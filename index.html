@@ -1,14 +1,31 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Website Status Checker</title>
-</head>
 <body>
-    <h1>Check Website Status</h1>
-    <p>Status for example.com: <span id="status">Checking...</span></p>
-    <!-- Hidden image used for checking -->
-    <img id="status-checker-img" style="display:none;" alt="status indicator">
 
-    <script src="status.js"></script>
+  <p>Status: <span id="status">checking...</span></p>
+  <button onclick="checkStatus()">Refresh Status</button>
+
+  <script>
+    async function checkStatus() {
+      const statusText = document.getElementById('status');
+      
+      try {
+        // 'no-cors' allows us to ping the server without being blocked by security policies,
+        // though we can't see the specific status code (200, 404, etc.)
+        await fetch("https://api.geode-sdk.org", { 
+          mode: 'no-cors',
+          cache: 'no-cache' 
+        });
+        statusText.innerText = "online";
+      } catch (error) {
+        statusText.innerText = "offline";
+      }
+    }
+
+    // Run on page load
+    checkStatus();
+  </script>
+
 </body>
 </html>
