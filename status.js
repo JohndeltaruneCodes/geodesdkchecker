@@ -1,6 +1,6 @@
 const statusElement = document.getElementById('status');
 const img = document.getElementById('status-checker-img');
-const targetUrl = 'http://example.com/favicon.ico'; // Use a small, public file
+const targetUrl = 'https://api.geode-sdk.org'; // Use a small, public file
 
 img.onload = function() {
     statusElement.textContent = 'Online';
